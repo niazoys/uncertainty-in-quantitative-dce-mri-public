@@ -7,12 +7,10 @@
   <a href="https://lightning.ai/docs/pytorch/stable/"><img src="https://img.shields.io/badge/PyTorch%20Lightning-2.4-792EE5.svg"></a>
 </p>
 
-This repository contains the code used for **Physics-Informed Uncertainty Quantification In DCE-MRI using Mean Variance Estimation**.
+This repository contains the code used for  <a href="https://www.sciencedirect.com/science/article/pii/S136184152500427X"> **Physics-Informed Uncertainty Quantification In DCE-MRI using Mean Variance Estimation**.</a>
 
 <p align="center">
   <img src="https://ars.els-cdn.com/content/image/1-s2.0-S136184152500427X-gr7_lrg.jpg" alt="Figure from the paper" width="900"/>
-  <br/>
-  <a href="https://www.sciencedirect.com/science/article/pii/S136184152500427X">View the paper figure on ScienceDirect</a>
 </p>
 
 ---
