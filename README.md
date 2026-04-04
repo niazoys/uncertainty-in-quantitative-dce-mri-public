@@ -10,6 +10,8 @@
 This repository contains the code used for **Physics-Informed Uncertainty Quantification In DCE-MRI using Mean Variance Estimation**.
 
 <p align="center">
+  <img src="https://ars.els-cdn.com/content/image/1-s2.0-S136184152500427X-gr7_lrg.jpg" alt="Figure from the paper" width="900"/>
+  <br/>
   <a href="https://www.sciencedirect.com/science/article/pii/S136184152500427X">View the paper figure on ScienceDirect</a>
 </p>
 
