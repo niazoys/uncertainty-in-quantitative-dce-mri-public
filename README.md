@@ -7,7 +7,7 @@
   <a href="https://lightning.ai/docs/pytorch/stable/"><img src="https://img.shields.io/badge/PyTorch%20Lightning-2.4-792EE5.svg"></a>
 </p>
 
-Research code for **physics-informed uncertainty quantification in DCE-MRI** using mean-variance estimation, stochastic baselines, and physics-informed variants.
+This repository contains the code used for **Physics-Informed Uncertainty Quantification In DCE-MRI using Mean Variance Estimation**.
 
 <p align="center">
   <img src="https://ars.els-cdn.com/content/image/1-s2.0-S136184152500427X-gr7_lrg.jpg" alt="Paper figure" width="900"/>
@@ -22,116 +22,45 @@ Research code for **physics-informed uncertainty quantification in DCE-MRI** usi
 
 ---
 
-## ✨ What this repository includes
+## Use
 
-- Multiple uncertainty-aware model families:
-  - `snn`
-  - `pinn`
-  - `mve_snn`
-  - `mve_pinn`
-  - `pinn_ph`
-- Networks:
-  - `fc`, `fc_unc`
-  - `dcenet`, `dcenet_unc`
-- Datasets/modes:
-  - `normal`, `ood`, `vivo`
-- End-to-end scripts for simulation, training, evaluation, ensembling, and NLLS baselines.
+1. In a clean virtual environment, run:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
----
+2. Run `example.py` in the `scripts` directory to train your own model and test if everything is working:
+   ```bash
+   python scripts/example.py
+   ```
 
-## 📂 Repository structure
+3. To simulate data yourself, run:
+   ```bash
+   python scripts/simulate.py
+   python scripts/simulate_ood.py
+   ```
+   You should see the resulting data including some visualisations in the `data/` directory.
 
-```text
-.
-├── configs/                 # Experiment configs (normal/ood/vivo + debug/example)
-├── data/                    # Input and generated datasets
-├── jobs/                    # Job scripts
-├── models/                  # Model wrappers (SNN, PINN, MVE, physics-informed)
-├── networks/                # Network backbones (FC, DCENet and uncertainty variants)
-├── scripts/
-│   ├── simulate.py
-│   ├── simulate_ood.py
-│   ├── train.py
-│   ├── eval.py
-│   ├── ensemble.py
-│   └── nlls.py
-├── utils/                   # Data modules, metrics, helpers
-└── requirements.txt
-```
+4. Run `train.py` using the config files in `configs/`, or create your own config files to run more model setups.
 
----
+5. Notice the created output path in `output/` after training a model. This will contain results. For further evaluation, use `eval.py` with several arguments, for example:
+   ```bash
+   python scripts/eval.py --path output/normal/mve_pinn_fc_0 --eval True --save_preds True
+   ```
 
-## 🔧 Installation
+6. After training N uncertainty-estimating models (`pinn_ph`, `mve_ssn`, or `pi_mve`), `ensemble.py` is used in combination with an ensemble config file to evaluate an ensemble, for example:
+   ```bash
+   python scripts/ensemble.py --config configs/normal/ensemble_snn.yaml --eval True --save_preds True
+   ```
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+7. Use `nlls.py` to generate NLLS predictions of a test dataset:
+   ```bash
+   python scripts/nlls.py --mode sim --simmode normal --eval True --vis True
+   ```
 
----
+## How to set up a logger
 
-## 🚀 Quick start
-
-### 1) Optional: simulate data
-
-```bash
-python scripts/simulate.py
-python scripts/simulate_ood.py
-```
-
-### 2) Run the example pipeline
-
-```bash
-python scripts/example.py
-```
-
-### 3) Train a model from config
-
-```bash
-# debug run
-python scripts/train.py --config debug --seed 0 --vis True
-
-# example config
-python scripts/train.py --config example --seed 42 --vis True
-```
-
-### 4) Evaluate a trained checkpoint/output folder
-
-```bash
-python scripts/eval.py --path output/normal/mve_pinn_fc_0 --eval True --save_preds True
-```
-
-### 5) Evaluate an ensemble
-
-```bash
-python scripts/ensemble.py --config configs/normal/ensemble_snn.yaml --eval True --save_preds True
-```
-
-### 6) Run NLLS baseline
-
-```bash
-python scripts/nlls.py --mode sim --simmode normal --eval True --vis True
-```
-
----
-
-## ⚙️ Configuration notes
-
-- Config files are in `configs/` (including `configs/normal`, `configs/ood`, `configs/vivo`).
-- Core fields include:
-  - `model`, `network`, `dataset`, `mode`
-  - `epochs`, `batch_size`, `lr`, `batch_per_epoch`
-  - `logger` (`wandb` or local/default)
-  - `kwargs` (e.g., `burnin_epochs`, `dt_predictor`)
-
----
-
-## 📊 Logging
-
-Supported logging:
-- Default PyTorch Lightning logger
-- Weights & Biases (`logger: wandb` in config)
+The current supported loggers are the default PyTorch Lightning logger and Weights & Biases. To use Weights & Biases, ensure your config file contains `logger: wandb`. To use an alternative logger such as TensorBoard, it has to be added to `scripts/train.py`.
 
 ---
 
