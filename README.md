@@ -15,12 +15,6 @@ This repository contains the code used for  <a href="https://www.sciencedirect.c
 
 ---
 
-## 📄 Paper
-
-- **Physics-Informed Uncertainty Quantification in DCE-MRI using Mean Variance Estimation**
-- Link: https://www.sciencedirect.com/science/article/pii/S136184152500427X
-
----
 
 ## Use
 
