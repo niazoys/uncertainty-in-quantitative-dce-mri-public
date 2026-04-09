@@ -47,7 +47,7 @@ This repository contains the code used for  <a href="https://www.sciencedirect.c
    python scripts/ensemble.py --config configs/normal/ensemble_snn.yaml --eval True --save_preds True
    ```
 
-7. Use `NLLS.py` (`scripts/nlls.py`) to generate NLLS predictions of a test dataset:
+7. Use `nlls.py` (`scripts/nlls.py`) to generate NLLS predictions of a test dataset:
    ```bash
    python scripts/nlls.py --mode sim --simmode normal --eval True --vis True
    ```
