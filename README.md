@@ -7,7 +7,7 @@
   <a href="https://lightning.ai/docs/pytorch/stable/"><img src="https://img.shields.io/badge/PyTorch%20Lightning-2.4-792EE5.svg"></a>
 </p>
 
-This repository contains the code used for  <a href="https://www.sciencedirect.com/science/article/pii/S136184152500427X"> **Uncertainty estimates in pharmacokinetic modelling of DCE-MRI**.</a>
+This repository contains the code used for [**Uncertainty estimates in pharmacokinetic modelling of DCE-MRI**](https://www.sciencedirect.com/science/article/pii/S136184152500427X).
 
 <p align="center">
   <img src="https://ars.els-cdn.com/content/image/1-s2.0-S136184152500427X-gr7_lrg.jpg" alt="Figure from the paper" width="900"/>
